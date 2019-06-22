@@ -3,25 +3,30 @@ class Solution(object):
         """
         :type x: int
         :rtype: int
+每次用除法和求余分别得到个位，十位，百位...的数，存入一List列表中。
+注意的地方有两点：
+一是要注意加减符号；
+二就是要注意数值大小范围，题目所给的范围是 [−2^31, 2^31 − 1]。根据这个假设，如果反转后的整数溢出，则返回 0。
         """
         num_reverse = 0
-        num_list = []
-        x_abs = abs(x)
+        num_list = []                      #建空列表
+        x_abs = abs(x)                     #返回数值绝对值
         x_flag = 0
-        if -2 ** 31 <= x <= 2**31 - 1:
+        if -2 ** 31 <= x <= 2**31 - 1:          #判断范围
             if x < 0:
-                x_flag = 1
+                x_flag = 1                 #负数时x_flag就为1，用于后面还原符号
             flag = x_abs
             while flag > 0:
-                flag = int(x_abs / 10)
-                x_list = x_abs % 10
-                num_list.append(x_list)
-                x_abs = int(x_abs / 10)
+                flag = int(x_abs / 10)        #每次循环x除以10去掉末位
+                x_list = x_abs % 10         #获得x的个位数字
+                num_list.append(x_list)     #个位数字加入list
+                x_abs = int(x_abs / 10)      #去掉末尾的个位，原来的十位变成个位
             for num in range(len(num_list)):
                 num_reverse += num_list[num] * 10 ** (len(num_list) - num - 1)
+                                        #利用幂指数运算将个位变为百位
         else:
             num_reverse = 0
         if -2 ** 31 <= num_reverse * (-1) ** x_flag <= 2 ** 31 - 1:
-            return num_reverse * (-1) ** x_flag
+            return num_reverse * (-1) ** x_flag     #利用-1的幂指数还原正负号
         else:
             return 0
