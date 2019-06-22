@@ -5,8 +5,8 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        nums_length = len(nums)
-        for one_num in range(nums_length-1):
-            for second_num in range(one_num+1, nums_length):
-                if nums[one_num] + nums[second_num] == target:
-                        return [one_num, second_num]
+        nums_length = len(nums)  #获取数组长度
+        for one_num in range(nums_length-1):    #以数组倒数第二个数为终点 对整个数组从头开始遍历one-number循环
+            for second_num in range(one_num+1, nums_length):  #嵌套循环，每一个大循环里通过查找one-number之后直到数组最后元素的second-number
+                if nums[one_num] + nums[second_num] == target:    #当second-number的循环里找到两者和为目标值时
+                        return [one_num, second_num]     #返回两个数的数组下标，接着进行大循环，直到结束
