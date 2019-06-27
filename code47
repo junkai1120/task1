@@ -1,0 +1,7 @@
+class Solution(object):
+    def isPowerOfTwo(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """ 
+        return n > 0 and n & n - 1 == 0      #2 的幂的二进制形式最高位一定是1，其余为0
