@@ -1,0 +1,10 @@
+class Solution(object):
+    def lengthOfLastWord(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        s = s.split()             #split函数将s以空格为间隔分割
+        if not s: return 0        #如果s没有字符串返回0
+        return len(s[-1])        #否则返回s中最后一个字符串的长度
+
