@@ -1,0 +1,25 @@
+先用hashmap记录下来分数和原始下标的映射，key是分数， val是原始下标。
+然后逆序排序nums，得到按名次排序的数组，再按照题目要求颁发奖牌和利用之前的hashmap记录给出相对排名
+
+class Solution(object):
+    def findRelativeRanks(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[str]
+        """
+        hashmap = dict()
+        for i, score in enumerate(nums):
+            hashmap[score] = i
+        nums = sorted(nums, lambda x: -1*x)
+        
+        mapping = {0:"Gold Medal", 1:"Silver Medal", 2:"Bronze Medal"} 
+        res = [0 for _ in nums]
+        for i, score in enumerate(nums):
+            if i <= 2: #前三名
+                res[hashmap[score]] = mapping[i]
+                continue
+            
+            res[hashmap[score]] = str(i + 1)
+            
+        return res
+
