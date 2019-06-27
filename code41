@@ -1,0 +1,12 @@
+#不是快乐数的数称为不快乐数(unhappy number)，所有不快乐数的数位平方和计算，最后都会进入 4 → 16 → 37 → 58 → 89 → 145 → 42 → 20 → 4 的循环中
+class Solution(object):
+    def isHappy(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        seen = {1}
+        while n not in seen:
+            seen.add(n)
+            n = sum(int(i) ** 2 for i in str(n))
+        return n == 1
