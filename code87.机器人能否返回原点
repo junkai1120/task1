@@ -1,0 +1,9 @@
+#如果上下可以抵消，左右也可以抵消，就说明回到原点了。
+
+class Solution(object):
+    def judgeCircle(self, moves):
+        """
+        :type moves: str
+        :rtype: bool
+        """
+        return moves.count('U')==moves.count('D') and moves.count('R')==moves.count('L')
