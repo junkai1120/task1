@@ -1,0 +1,67 @@
+利用两个队列，一个叫输入队列，一个叫输出队列。每次从输入栈进，输出栈出。
+push操作：将加入的元素添加到输入队列尾部；
+pop操作：若执行操作时输入队列非空，从输入队列取出元素加入输出队列，直至取出输入队列最后一个元素(取出后输入队列为空)直接输出。若输入队列为空，则从输出队列取出元素加入输入队列，直至取出输出对队列最后一个元素直接输出。
+peek操作：同pop操作原理一样；
+empty为真的条件是两个队列都为空。
+队列的插入和取出操作利用list的append(x)和pop(0)表示。
+
+class MyStack(object):
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.queuein = []
+        self.queueout = []
+
+    def push(self, x):
+        """
+        Push element x onto stack.
+        :type x: int
+        :rtype: None
+        """
+        self.queuein.append(x)
+
+   def pop(self):
+        """
+        Removes the element on top of the stack and returns that element.
+        :rtype: int
+        """
+        while self.queuein:
+            a = self.queuein.pop(0)
+            if self.queuein:
+                self.queueout.append(a)
+            else:
+                return a
+        while self.queueout:
+            a = self.queueout.pop(0)
+            if self.queueout:
+                self.queuein.append(a)
+            else:
+                return a
+
+    def top(self):
+        """
+        Get the top element.
+        :rtype: int
+        """
+        while self.queuein:
+            a = self.queuein.pop(0)
+            self.queueout.append(a)
+            if not self.queuein:
+                return a
+        while self.queueout:
+            a = self.queueout.pop(0)
+            self.queuein.append(a)
+            if not self.queueout:
+                return a
+
+     def empty(self):
+        """
+        Returns whether the stack is empty.
+        :rtype: bool
+        """        
+if not self.queuein and not self.queueout:
+            return True
+        else:
+            return False
