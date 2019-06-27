@@ -1,0 +1,18 @@
+#首先我们对数组进行排序，随后我们可以在常数时间内判断两种特殊情况：0 没有出现在数组的首位，以及 n没有出现在数组的末位。如果这两种特殊情况都不满足，那么缺失的数字一定在 0 和 n之间（不包括两者）。此时我们可以在线性时间内扫描这个数组，如果某一个数比它前面的那个数大了超过 1，那么这两个数之间的那个数即为缺失的数字。
+
+class Solution:
+    def missingNumber(self, nums):
+        nums.sort()
+
+        #确认 n出现在数组末位
+        if nums[-1] != len(nums):
+            return len(nums)
+        #确认0出现在数组首位 
+        elif nums[0] != 0:
+            return 0
+
+        #如果这两种特殊情况都不满足，那么缺失的数字一定在 0 和 n之间
+        for i in range(1, len(nums)):
+            expected_num = nums[i-1] + 1
+            if nums[i] != expected_num:
+                return expected_num
