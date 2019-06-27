@@ -1,0 +1,18 @@
+# 1～3--a肯定会拿走，a赢
+4--无论a怎么拿，顺序都是ab，都是b赢
+5--看作1+[4]，那么拿的顺序就是aba，a赢
+6--看作2+[4]，那么拿的顺序就是aba，a赢
+7--看作3+[4]，那么拿的顺序就是aba，a赢
+8--看作[4]+[4]，无论a怎么拿顺序都是abab，b赢
+以此类推
+由此我们可以看出，当n被4整除时，后手赢（b），不被整除时，先手赢（a）
+class Solution(object):
+    def canWinNim(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        if n%4 != 0:
+            return True
+        
+        return False
