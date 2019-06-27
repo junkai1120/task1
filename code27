@@ -1,0 +1,17 @@
+class Solution(object):
+    def isPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        left, right = 0, len(s) – 1               #双指针法
+        while left < right:
+            while left < right and not s[left].isalnum():        
+                left += 1
+            while left < right and not s[right].isalnum():
+                right -= 1                  #一个从前往后一个从后往前走
+            if s[left].lower() != s[right].lower():
+                return False                #遇到不满足对称相等的就返回false
+            left += 1
+            right -=1
+        return True
