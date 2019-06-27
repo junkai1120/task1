@@ -1,0 +1,27 @@
+好版本和坏版本一定有个边界，那么我们用二分法来找这个边界：
+对mid值调用API函数
+如果是坏版本，说明边界在左边，则把mid赋值给right
+如果是好版本，则说明边界在右边，则把mid+1赋给left
+最后返回left即可
+需要注意的是，如果left和right都特别大的话，那么left+right可能会溢出，我们的处理方法就是变成left + (right - left) / 2，很好的避免的溢出问题
+
+# The isBadVersion API is already defined for you.
+# @param version, an integer
+# @return a bool
+# def isBadVersion(version):
+
+class Solution:
+    def firstBadVersion(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        left, right = 1, n
+        while left < right:
+            mid = left + (right-left)//2
+            if not isBadVersion(mid):
+                left = mid + 1
+            else:
+                right = mid
+        return left
+
