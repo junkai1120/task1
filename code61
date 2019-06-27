@@ -1,0 +1,14 @@
+#观察规律，可以发现 4的幂 需要满足以下条件：
+最高位是 1，其余都为 0；
+最高位的 1 应该在奇数位上，比如：100 的 1 在 第三位上；
+那么对应的判断方法为：
+用 num & (num-1) 可以判断条件1，比如：100(4) & 011(3) == 0，结果为 0 说明符合条件1；
+是否在奇数位可以用 0xaaaaaaaa 判断，16 进制的 a 是 1010，比如：0100(4) & 1010(a) == 0，结果为 0 说明最高位 1 在奇数位上；
+
+class Solution(object):
+    def isPowerOfFour(self, num):
+        """
+        :type num: int
+        :rtype: bool
+        """
+        return num>0 and num&(num-1)==0 and 0xaaaaaaaa&num==0
