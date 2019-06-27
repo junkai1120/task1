@@ -1,0 +1,22 @@
+#先统计一下T里字符出现的频率，然后遍历S，如果S里的字符在T里出现了，就把它放到res里。遍历完S后，再把T中没有排序要求的字符放到res里。
+
+
+class Solution(object):
+    def customSortString(self, S, T):
+        """
+        :type S: str
+        :type T: str
+        :rtype: str
+        """
+        res = ""
+        c = collections.Counter(T)
+        for char in S:
+            if c.get(char, 0):
+                res += char * c[char]
+                c[char] = 0
+                
+        for key in c:
+            if c[key] != 0:
+                res += key * c[key]
+        
+        return res
