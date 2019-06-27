@@ -1,0 +1,18 @@
+#当X >Y的时候只能不断减一
+当Y >X的时候， 倒着想，怎么让Y更快的到达X： 如果Y是偶数，那么最快的方式就是除二； 如果Y是奇数，先加一把它变成偶数，接下来就可以除二了。
+
+
+
+class Solution(object):
+    def brokenCalc(self, X, Y):
+        """
+        :type X: int
+        :type Y: int
+        :rtype: int
+        """
+        if X >= Y:
+            return X - Y
+        if Y % 2 == 0:
+            return 1 + self.brokenCalc(X, Y // 2)
+        else:
+            return 1 + self.brokenCalc(X, (Y + 1))
