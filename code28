@@ -1,0 +1,12 @@
+ #其他都只出现两次，只有一个数字出现一次，所以可以用异或
+          class Solution(object):
+         def singleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        a = 0
+        for num in nums:
+            a = a ^ num
+        return a
+
