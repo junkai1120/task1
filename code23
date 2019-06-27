@@ -1,0 +1,22 @@
+#当前节点左右子树有一个为空时，返回的应是非空子树的最小深度，而不是空子树深度0；若返回0相当于把当前节点认为成叶子节点，与此节点有非空子树矛盾。
+当左右子树都不为空时，和maximum depth题一样，返回左右子树深度的最小值。
+当左右子树都为空时，只有1个根节点深度为1（根节点与叶子节点重合）
+class Solution(object):
+    def minDepth(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if root:
+            if root.left and root.right:
+                return 1+min(self.minDepth(root.left),self.minDepth(root.right))
+                  #递归公式：树最小深度 = min(左子树深度，右子树深度) + 1
+            elif root.left:
+                return 1+self.minDepth(root.left)
+       
+            elif root.right:
+                return 1+self.minDepth(root.right)
+            else:
+                return 1
+        else:
+            return 0
