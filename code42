@@ -1,0 +1,24 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def removeElements(self, head, val):
+        """
+        :type head: ListNode
+        :type val: int
+        :rtype: ListNode
+        """
+        while head and head.val == val:
+            head = head.next
+        pre, cur = head, head and head.next
+        while cur:
+            if cur.val == val:
+                pre.next = cur = cur.next
+            else:
+                pre, cur = cur, cur.next
+        return head
+#第一个 while 用于找到应该返回的链表头（应该跳过所有特殊 val 的节点）
+#第二个 while 用于把前一个节点指针接到下一个节点（如果当前节点值为 val）
