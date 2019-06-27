@@ -1,0 +1,26 @@
+把input分离成A的实部ra，A的虚部va，以及B对应的rb, vb 然后按照数学的虚数计算规律算
+
+
+class Solution(object):
+    def complexNumberMultiply(self, a, b):
+        """
+        :type a: str
+        :type b: str
+        :rtype: str
+        """
+        if not a or not b:
+            return None
+ 
+        aa = a.split("+")
+        ra = aa[0]
+        va = aa[1][:-1]
+        
+        bb = b.split("+")
+        rb = bb[0]
+        vb = bb[1][:-1]
+       
+        rres = int(ra) * int(rb) - int(va) * int(vb)
+        vres = int(ra) * int(vb) + int(rb) * int(va)
+        
+        return "{}+{}i".format(str(rres), str(vres))
+ 
