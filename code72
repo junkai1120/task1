@@ -1,0 +1,21 @@
+#1、计算每个字母出现的次数 2、遍历所有数字，如果出现次数是偶数，则直接加入到最后的回文串中，如果出现次数是奇数，则将个数减去1（得到离得最近的偶数）。 3、如果曾经出现过字母的出现次数是奇数，则结果再加上1，因为可以将多出来的字母放在最中间
+
+from collections import Counter
+class Solution(object):
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        c = Counter(s)
+        have_odd = False
+        res = 0
+        for key,n in c.items():
+            if n & 1: # 是奇数
+                have_odd = True
+                res += n - 1
+            else:
+                res += n
+        if have_odd:
+            res += 1
+        return res
