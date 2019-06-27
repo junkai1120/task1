@@ -1,0 +1,14 @@
+#直接模拟所有可能的旋转结果，然后和B对比。
+
+class Solution(object):
+    def rotateString(self, A, B):
+        """
+        :type A: str
+        :type B: str
+        :rtype: bool
+        """
+        for i in range(1, 101):
+            tmp = A[i:] + A[:i]
+            if tmp == B:
+                return True
+        return False
