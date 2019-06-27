@@ -1,0 +1,25 @@
+#基本思路就是遍历，逐渐调换顺序，比如先调换前两个，再调换前三个
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def reverseList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        if head == None or head.next == None:
+            return head
+        p = ListNode(head.val) 
+        q = ListNode(head.next.val)
+        q.next = p
+        r = head.next.next
+        while r is not None:
+            tmp = ListNode(r.val)
+            tmp.next = q
+            q = tmp
+            r = r.next   
+        return q
