@@ -1,0 +1,16 @@
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        l = len(nums)
+        if l == 0:
+            return 0
+        if l == 1:
+            return nums[0]
+        dp = [0 for _ in range(l)]
+        dp[0] = nums[0]
+        for i in range(1, l):
+            dp[i] = max(dp[i - 1] + nums[i], nums[i])
+        # 最后不要忘记拉通求一遍最大值，或者在上面遍历的时候，就保存最大值
+        return max(dp)
+        #dp[i] 表示以 nums[i] 结尾的连续子数组的最大和。因为 dp[i - 1] 一定以 nums[i-1] 结尾，那么 dp[i] 就可以有两种情况：
+1、把 nums[i] 直接接在 dp[i - 1] 表示的那个数组的后面；
+2、单独的一个 nums[i] 。
