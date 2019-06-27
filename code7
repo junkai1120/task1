@@ -1,0 +1,10 @@
+class Solution(object):
+    def removeDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        for i in range(len(nums)-2,-1,-1):       #从nums的倒数第二个开始从后往前遍历
+            if nums[i]==nums[i+1]:          #如果第i个数与后一个相同
+                nums.pop(i+1)             #就删除后一个数
+        return len(nums)
