@@ -1,0 +1,24 @@
+#如果两棵二叉树rootl 、root2 相等，那么rootl 与root2 结点的值相同，同时它们的左右孩子也有着相同的结构，并且对应位置上结点的值相等，即rootl . data=root2.data ， 并且rootl的左子树与root2 的左子树相等， rootl 的右子树与root2 的右子树相等。
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def isSameTree(self, p, q):
+        """
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: bool
+        """
+        if not p and not q:
+            return True
+        elif p is not None and q is not None:
+            if p.val == q.val:
+                return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+            else:
+                return False
+        else:
+            return False
