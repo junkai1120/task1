@@ -1,0 +1,24 @@
+class Solution:
+    def validWordAbbreviation(self, word: str, abbr: str) -> bool:
+        p1 = 0
+        p2 = 0
+        while p1 < len(word) and p2 < len(abbr):
+            # 字符匹配
+            if word[p1] == abbr[p2]:
+                p1 += 1
+                p2 += 1
+            # 字符-数字匹配
+            elif abbr[p2].isdigit():
+                # 数字不能0开头
+                if abbr[p2] == '0':
+                    return False
+                num = ''
+                while p2 < len(abbr) and abbr[p2].isdigit():
+                    num += abbr[p2]
+                    p2 += 1
+                p1 += int(num)
+            # 不配
+            else:
+                return False
+        return p1 == len(word) and p2 == len(abbr)
+
