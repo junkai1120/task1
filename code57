@@ -1,0 +1,13 @@
+#一个删除列表里的0操作，一个在最后增加0操作。 如果抛出异常，证明remove失败，也就意味着原列表里已经没有0，return即可。
+class Solution(object):
+    def moveZeroes(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: None Do not return anything, modify nums in-place instead.
+        """
+        for i in range(len(nums)):
+            try:
+                nums.remove(0)
+                nums.append(0)
+            except:
+                return nums
