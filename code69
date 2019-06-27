@@ -1,0 +1,27 @@
+#采用迭代法先序遍历，判断当前节点的左子树是否为叶子节点
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def sumOfLeftLeaves(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        sum_ = 0
+        if not root:
+            return 0
+        ans = [root]
+        while ans:
+            r = ans.pop()
+            if r.left and not r.left.left and not r.left.right:
+                sum_ += r.left.val
+            if r.left:
+                ans.append(r.left)
+            if r.right:
+                ans.append(r.right)
+        return sum_
