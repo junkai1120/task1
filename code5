@@ -1,0 +1,13 @@
+class Solution(object):
+    def longestCommonPrefix(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        if not strs: return ""     #判断是否是字符串组
+        s1 = min(strs)          #取字符串组中ASCII值最小的字符串    
+        s2 = max(strs)          #取字符串组中ASCII值最大的字符串
+        for i,x in enumerate(s1):  #遍历s1
+            if x != s2[i]:        
+                return s2[:i]    #直到s1中的字符与s2中的不同，返回相同部分
+        return s1              
