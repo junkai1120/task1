@@ -1,0 +1,21 @@
+class Solution(object):
+    def isUgly(self, num):
+        """
+        :type num: int
+        :rtype: bool
+        """
+        if num==0:
+            return False
+        if num==1:
+            return True
+        while num!=1:
+            if num%2==0:
+                num/=2
+            elif num%3==0:
+                num/=3
+            elif num%5==0:
+                num/=5
+            else:
+                return False
+        return True
+#丑数就是只包含质因数 2, 3, 5 的正整数，因此丑数分解因子，一定全是2，3，5。将所有因子除完剩下为1
