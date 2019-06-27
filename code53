@@ -1,0 +1,13 @@
+class Solution(object):
+    def addDigits(self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        if num < 9:
+            return num
+        elif num % 9 == 0:
+            return 9
+        else:
+            return num%9  
+#假设一个三位数整数n=100*a+10*b+c,变化后addn=a+b+c； 两者的差值n-addn=99a+9b，差值可以被9整除，说明每次缩小9的倍数 那么我们可以对num%9，若不为0则返回，为0则返回9
