@@ -1,0 +1,23 @@
+#二分法
+class Solution(object):
+    def mySqrt(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        if x == 0 or x==1:
+            return x           #特殊情况0和1
+        high = x
+        low = 0                #二分法初始端点0和x
+        while low <= high:
+            mid = (low + high) // 2    #二分法取整
+            
+            val = mid * mid       
+            val_n = (mid+1) * (mid+1)
+            
+            if  val<= x and val_n>x:
+                return mid
+            elif val > x:
+                high = mid - 1
+            else:
+                low = mid + 1   #找到mid的平方小于x，mid+1的平方大于x
