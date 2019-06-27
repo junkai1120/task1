@@ -1,0 +1,20 @@
+#先用一个数组存正整数的二进制，然后扫描这个数组，每一位取反并算出最后对应的十进制数。
+class Solution(object):
+    def findComplement(self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        binary = list()
+        while(num >= 2):
+            temp = num % 2
+            binary.append(temp)
+            num = (num-temp)  / 2
+        binary.append(num)
+       
+        res = 0
+        multiplex = 1
+        for item in binary:
+            res += (1-item) * multiplex
+            multiplex *= 2
+        return res
