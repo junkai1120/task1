@@ -1,0 +1,42 @@
+#先求两个链表的长度，然后在让相对长的链表走到跟短链表相同长度的位置，然后再一起遍历，找到相等（位置，地址都相等）的位置，返回。若没有找到，返回None。
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def getIntersectionNode(self, headA, headB):
+        """
+        :type head1, head1: ListNode
+        :rtype: ListNode
+        """
+        if headA==None or headB==None:
+            return None
+        p = headA
+        count1 = 0
+        while p:
+            count1 += 1
+            p = p.next
+            
+        q = headB
+        count2 = 0
+        while q:
+            count2 += 1
+            q = q.next
+        
+        if count1<count2:
+            headA, headB = headB, headA 
+            count1, count2 = count2,count1
+            
+        while count1>count2:
+            headA = headA.next
+            count1 -= 1
+        
+        while headA:
+            
+            if headA==headB:
+                return headA
+            else:
+                headA, headB = headA.next,headB.next
+        return None
