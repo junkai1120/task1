@@ -1,0 +1,16 @@
+#用一个变量last_one 记录上一个1的位置，然后线性扫描N的二进制表示，不断更新res。
+
+class Solution(object):
+    def binaryGap(self, N):
+        """
+        :type N: int
+        :rtype: int
+        """
+        b = bin(N)[2:]
+        last_one, res = 0, 0
+        for i, char in enumerate(b):
+            if char == "1":
+                res = max(res, i - last_one)
+                last_one = i
+                
+        return res
