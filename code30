@@ -1,0 +1,24 @@
+class MinStack:
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        self.stack = []
+        self.min_stack = []
+        
+    def push(self, x: int) -> None:
+        self.stack.append(x)
+        if not self.min_stack or x <= self.min_stack[-1]: 
+            self.min_stack.append(x)
+    def pop(self) -> None:
+        if self.stack.pop() == self.min_stack[-1]:
+            self.min_stack.pop()
+        
+    def top(self) -> int:
+        return self.stack[-1]
+        
+    def getMin(self) -> int:
+        return self.min_stack[-1]
+
+#借用一个辅助栈min_stack，每当push新值进来时，如果小于等于min_stack栈顶值则一起push到min_stack；
+pop时判断是否是最小值，如果是则min_stack一起pop，这样可以保证min_stack栈顶始终是stack`中的最小值。
