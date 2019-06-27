@@ -1,0 +1,11 @@
+#通过比较两个串的每个字母出现次数是否相等，判断是否为有效的字母异位词
+#Counter 函数，可以统计每个字母出现次数
+from collections import Counter
+class Solution(object):
+    def isAnagram(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        return Counter(s) == Counter(t)
