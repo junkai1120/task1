@@ -1,0 +1,11 @@
+class Solution(object):
+    def maxDepth(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if not root:
+            return 0
+        return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
+                 #递归公式：树深度 = max(左子树深度，右子树深度) + 1
+#终止条件：越过叶子节点，return 0
