@@ -1,0 +1,27 @@
+#以（0,0）点为基础找到周围的8个点。进行遍历，当周围的八个点的（x,y）坐标都落在0，height，width范围内，进行取值，求和。
+
+class Solution(object):
+    def imageSmoother(self, M):
+        """
+        :type M: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        dirs = [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]
+        height = len(M)
+        width = len(M[0])
+        res = []
+        for i in range(height):
+            cache = []
+            for j in range(width):
+                sum = M[i][j]
+                count = 1
+                for _dir in dirs:
+                    #todo 遍历所有的关于当前点围绕的8个数的x,y.当满足x,y依旧落在该取值区间，就进行加和
+                    x = _dir[0]+i
+                    y = _dir[1]+j
+                    if x>=0 and x<height and y>=0 and y<width:
+                        sum += M[x][y]
+                        count += 1
+                cache.append(sum//count)
+            res.append(cache)
+        return res
