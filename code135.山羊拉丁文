@@ -1,0 +1,32 @@
+class Solution(object):
+    def toGoatLatin(self, S):
+        """
+        :type S: str
+        :rtype: str
+        """
+             # 字符串转变为列表
+        lis = S.split(" ");
+        newLis = []
+        newnewLis = []
+        yuanyin = ['a','e','i','o','u','A','E','I','O','U'];
+        # 列表中每个单词进行转换
+        for i in range(0, len(lis)):
+            # 元音单词末尾加ma
+            if list(lis[i])[0] in yuanyin:
+                st = "".join(lis[i]) + "ma"
+                newLis.append(st)
+            else:
+                lis2 = list(lis[i])
+                ssss=lis2[0]
+                lis2.remove(lis2[0])
+                lis2.append(ssss);
+                st = "".join(lis2) + "ma"
+                newLis.append(st)
+        # 为列表中的每个元素添加n个a
+        for j in range(0, len(newLis)):
+            st = newLis[j] + (j + 1) * "a";
+            newnewLis.append(st);
+
+            # 列表转换为字符串
+            st2 = " ".join(str(i) for i in newnewLis)
+        return st2
