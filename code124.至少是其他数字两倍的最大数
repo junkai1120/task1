@@ -1,0 +1,14 @@
+class Solution(object):
+    def dominantIndex(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        # 内置方法
+        max_num = max(nums)
+        for i in nums:
+             if i==max_num:
+                continue
+        if 2*i > max_num:
+                 return -1
+        return nums.index(max_num)
