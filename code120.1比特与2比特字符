@@ -1,0 +1,14 @@
+class Solution(object):
+    def isOneBitCharacter(self, bits):
+        """
+        :type bits: List[int]
+        :rtype: bool
+        """
+        l = len(bits)
+        i = 0
+        while i < l-1:
+            if bits[i] == 0:
+                i+=1
+            else:
+                i+=2
+        return i != l
