@@ -1,0 +1,28 @@
+#分别记录name和typed的去重字符和连续字符出现的次数。若true，则去重字符必须相等，且出现次数是小等关系
+class Solution:
+    def isLongPressedName(self, name: 'str', typed: 'str') -> 'bool':
+        count = [1]
+        n = ''
+        n += typed[0]
+        for i in range(1, len(typed)):
+            if typed[i] == typed[i-1]:
+                count[-1] += 1
+            else:
+                n += typed[i]
+                count.append(1)
+        count1 = [1]
+        n1 = ''
+        n1 += name[0]
+        for i in range(1, len(name)):
+            if name[i] == name[i-1]:
+                count1[-1] += 1
+            else:
+                n1 += name[i]
+                count1.append(1)
+        #print(n,count,n1,count1)
+        if n != n1:
+            return False
+        for i in range(len(count)):
+            if count[i] < count1[i]:
+                return False
+        return True
