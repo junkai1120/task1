@@ -1,0 +1,13 @@
+class Solution(object):
+    def toLowerCase(self, str):
+        """
+        :type str: str
+        :rtype: str
+        """
+        l = list(str)
+        i = 0
+        for i in range(len(l)):
+            if 65 <= ord(l[i]) <= 90:
+                l[i] = chr(ord(l[i])+32)
+        str1 = ''.join(l)
+        return str1
