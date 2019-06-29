@@ -1,0 +1,16 @@
+Python 的 find 查一下
+
+class Solution(object):
+    def maxDistToClosest(self, seats):
+        """
+        :type seats: List[int]
+        :rtype: int
+        """
+        seats = map(str, seats)
+        s = ''.join(seats)
+        sp = s.split('1')
+        res = 0
+        for x in sp:
+            res = max(res, (len(x) + 1) // 2)
+        res = max(s.find('1'), res, s[::-1].find('1'))
+        return res
