@@ -1,0 +1,24 @@
+#如果当前节点大于根节点的值，则比较（当前节点，递归左节点，递归右节点），找到最小值；反之则递归左右子节点，找最小值（不等于根节点的值）。
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def findSecondMinimumValue(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        judge = root.val
+        def find(root):
+            if not root:
+                return 1000000000000
+            if root.val == judge:
+                return min(find(root.left),find(root.right))
+            return min(root.val,find(root.left),find(root.right))
+        second = find(root)
+        return second if second !=1000000000000 else -1
