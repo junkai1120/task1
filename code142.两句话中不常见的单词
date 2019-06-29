@@ -1,0 +1,17 @@
+拼接字符串A+B，然后返回拼接后的字符串中只出现过一次的单词
+
+class Solution(object):
+    def uncommonFromSentences(self, A, B):
+        """
+        :type A: str
+        :type B: str
+        :rtype: List[str]
+        """
+        s = A + ' ' + B
+        s = s.split(' ')
+        s_set = set(s)
+        re = []
+        for i in s_set:
+            if s.count(i) == 1:
+                re.append(i)
+        return re
