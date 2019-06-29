@@ -1,0 +1,47 @@
+class Solution {
+public:
+    string shortestCompletingWord(string licensePlate, vector<string>& words) 
+    {
+        map<char,int> nums1;       //记录licensePlate出现的字母和次数
+        int size_1 = 20;            //记录单词的长度 
+        string result = "";          //记录结果单词
+        for(int i = 0;i<licensePlate.size();i++)   //第一步：遍历licensePlate，找字母
+        {
+             if(licensePlate[i]>='a' && licensePlate[i]<='z')
+            {
+                nums1[licensePlate[i]]++;
+            }
+            else if(licensePlate[i]>='A' && licensePlate[i]<='Z')  //大写转小写
+            {
+                nums1[licensePlate[i] + 32]++;
+            }
+        }
+        
+        for(int i = 0;i<words.size();i++)          //第二步：遍历words
+        {
+            map<char,int> nums2;                     //1、记录每个单词出现nums2中的value，及次数key
+            for(int j = 0;j<words[i].size();j++)
+            {
+                if(nums1.find(words[i][j]) != nums1.end())   //单词中有与nums1对应的字母
+                    nums2[words[i][j]]++;    //往nums3中存value-key
+            }
+            
+            if(nums2.size() == nums1.size())    //2、遍历完单个单词后，判断其是否是最短完整词
+            {
+                int counts = 0;
+                for(auto key : nums1)    //遍历map，判断value
+                {
+                    if(nums1[key.first] <= nums2[key.first])   //取得是value值
+                        ++counts;
+                }
+                nums2.clear();
+                if(counts == nums1.size() && words[i].size() <size_1)    //3、确定最短完整词
+                    {
+                        result = words[i];
+                        size_1 = words[i].size();
+                    }
+            }
+        }
+        return result;
+    }
+};
