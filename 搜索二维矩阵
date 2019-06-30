@@ -1,0 +1,22 @@
+二维变成一维,就是按照二维数组顺序,依次变成一维数列,所以有如果一个数在一维坐标位置是loc,那么它在二维坐标就是[loc/col][loc%col]
+
+class Solution(object):
+    def searchMatrix(self, matrix, target):
+        """
+        :type matrix: List[List[int]]
+        :type target: int
+        :rtype: bool
+        """
+        if not matrix: return False
+        row = len(matrix)
+        col = len(matrix[0])
+        left = 0
+        right = row * col
+        while left < right:
+            mid = left + (right - left) // 2
+            if matrix[mid // col][mid % col] < target:
+                left = mid + 1
+            else:
+                right = mid
+        #print(left,right)
+        return left < row * col and matrix[left // col][left % col] == target
