@@ -1,0 +1,16 @@
+#我们用深度优先搜索标记每一个节点，对于每一个节点 node，它的父亲为 par，深度为 d，我们将其记录到 Hashmap 中：parent[node.val] = par 且 depth[node.val] = d。
+
+lass Solution(object):
+    def isCousins(self, root, x, y):
+        parent = {}
+        depth = {}
+        def dfs(node, par = None):
+            if node:
+                depth[node.val] = 1 + depth[par.val] if par else 0
+                parent[node.val] = par
+                dfs(node.left, node)
+                dfs(node.right, node)
+
+        dfs(root)
+        return depth[x] == depth[y] and parent[x] != parent[y]
+
