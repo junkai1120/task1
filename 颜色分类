@@ -1,0 +1,22 @@
+通过一次遍历得到0和1的个数，2的个数通过数组长度减去0和1的个数，再对数组进行重新赋值
+
+class Solution(object):
+    def sortColors(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: None Do not return anything, modify nums in-place instead.
+        """
+        a = 0
+        b = 0
+        for i in nums:
+            if i == 0:
+                a += 1
+            elif i == 1:
+                b += 1
+        c = len(nums) - a - b
+        for i in range(0,a):
+            nums[i] = 0
+        for i in range(a, a+b):
+            nums[i] = 1
+        for i in range(a+b, a+b+c):
+            nums[i] = 2
