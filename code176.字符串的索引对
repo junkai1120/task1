@@ -1,0 +1,15 @@
+#双指针定位一个单词
+
+class Solution(object):
+    def indexPairs(self, text, words):
+        """
+        :type text: str
+        :type words: List[str]
+        :rtype: List[List[int]]
+        """
+        res = []
+        for i in range(len(text)):
+            for j in range(i, len(text)):
+                if text[i:j + 1] in words:
+                    res.append([i, j])
+        return res
