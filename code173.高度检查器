@@ -1,4 +1,4 @@
-内置函数
+#用内置函数
 
 class Solution(object):
     def heightChecker(self, heights):
