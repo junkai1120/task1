@@ -1,4 +1,4 @@
-#转成十进制的表达式，然后利用eval函数进行运算
+#转成十进制的表达式，然后利用eval函数进行运算。
 
 class Solution(object):
     def scoreOfParentheses(self, S):
