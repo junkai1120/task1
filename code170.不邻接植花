@@ -1,0 +1,32 @@
+首先用邻接表path_map构建地图，这里采用的是列表中的下表表示花园，列表中的元素还是列表，表示和这个列表相连接的花园。
+result存放结果，下标是花园，值是花的种类。
+从花园1开始为每个花园种花，在当前花园i中，与它相邻的花园中编号i大的先不用管，该花园还没有种花；对于编号比i小的花园，需要将他们中的花的种类放到set中，因为与i相连的花园可能种相同的花。
+最后从1到4开始遍历，最小的数字j不在set中，那么花园i就中花j。
+
+class Solution(object):
+    def gardenNoAdj(self, N, paths):
+        """
+        :type N: int
+        :type paths: List[List[int]]
+        :rtype: List[int]
+        """
+        result = [0 for x in range(N+1)]
+        path_map = [[] for x in range(N+1)]
+        
+        #构建地图
+        for num in paths:
+            path_map[num[0]].append(num[1])
+            path_map[num[1]].append(num[0])
+        s = set() #存储该花园相邻的花园种植的花
+        for i in range(1,N+1):
+            s.clear()
+            for j in path_map[i]:
+                if( j < i):
+                    s.add(result[j])
+            for j in range(1,5):
+                if(j not in s):
+                    count = j
+                    break
+            result[i] = count
+
+        return result[1:]
