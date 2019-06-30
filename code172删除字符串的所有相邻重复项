@@ -1,0 +1,16 @@
+#用的python字符串存的，切片的方法
+
+class Solution(object):
+    def removeDuplicates(self, S):
+        """
+        :type S: str
+        :rtype: str
+        """
+        stack = ''
+        for i in S:
+            stack += i
+            if len(stack)<2:
+                continue
+            if i == stack[-2]:
+                stack = stack[:-2]
+        return stack
