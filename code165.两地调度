@@ -1,0 +1,12 @@
+class Solution(object):
+    def twoCitySchedCost(self, costs):
+        """
+        :type costs: List[List[int]]
+        :rtype: int
+        """
+         #看每个人去A市不取B市能剩多少钱,然后省钱最多的前一半的人去A,剩下的去B
+        #自定义list排序方法
+        costs = sorted( costs , key = lambda x: x[1]-x[0] , reverse = True )
+        mid = len(costs)/2
+        return sum([cost[0] for cost in costs[:mid]]+[cost[1] for cost in costs[mid:]])
+
