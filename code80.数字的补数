@@ -1,4 +1,5 @@
 #先用一个数组存正整数的二进制，然后扫描这个数组，每一位取反并算出最后对应的十进制数。
+
 class Solution(object):
     def findComplement(self, num):
         """
