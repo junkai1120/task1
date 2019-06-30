@@ -1,0 +1,12 @@
+先搞个1位2进制数1，这个二进制数小于等于N的时候，将1左移1位，循环到他大于N，这时候再将这个数-1，就得到了与N二进制位数相同的很多1的二进制数，然后相减即可
+
+class Solution {
+public:
+    int bitwiseComplement(int N) {
+        if (!N) return 1;
+        int num = 1;
+        while (num <= N) num <<= 1;
+        return num - 1 - N;
+    }
+};
+
