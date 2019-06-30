@@ -1,0 +1,25 @@
+class Solution(object):
+    def nextPermutation(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: None Do not return anything, modify nums in-place instead.
+        """
+        size = len(nums)
+        if size <= 1: return
+        for i in range(size - 2, -1, -1):
+            if nums[i] < nums[size - 1]:  # 可调换
+                # 查找在 i 右侧中次大于 nums[i] 的值
+                j = size - 1
+                while j > i and nums[i] < nums[j]:
+                    j -= 1
+                nums[i], nums[j + 1] = nums[j + 1], nums[i]
+                break
+            else:
+                # 不可调换时, 将 i 右侧的均左移一个, 并将原 i 位置处移至末尾
+                cur = nums[i]
+                j = i
+                while j < size - 1:
+                    nums[j] = nums[j + 1]
+                    j += 1
+                nums[size - 1] = cur
+
