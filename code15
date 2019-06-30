@@ -1,4 +1,4 @@
-#二分
+#二分法
 class Solution(object):
     def mySqrt(self, x):
         """
