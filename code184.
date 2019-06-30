@@ -1,0 +1,28 @@
+将整数转化为roman字符串，总体思路是先处理高位字符，舍去高位后再处理低位字符。如1437，先将1000的字符加入，再处理437，将400字符加入，再处理37……
+有两种特例需要处理9xx，4xx，但总体上还是可以约化为先处理高位再处理低位的问题，如1900，先加入1000，再加入特例900……
+开辟两个数组分别存储数字和对应字符，对num处理算出当前位需要几个字符，k++遍历下个字符，直到num = 0时返回。
+
+
+class Solution(object):
+    def intToRoman(self, num):
+        """
+        :type num: int
+        :rtype: str
+        """
+res = ""
+        values = [1000, 900, 500, 400,
+                  100, 90, 50, 40,
+                  10, 9, 5, 4,
+                  1]
+        symbols = ['M', 'CM', 'D', 'CD',
+                   'C', 'XC', 'L', 'XL',
+                   'X', 'IX', 'V', 'IV',
+                   'I']
+        i = 0
+        while num > 0:
+            count = num // values[i]
+            res += "".join([symbols[i] for _ in range(count)])
+            num -= count * values[i]
+            i += 1
+        return res
+
