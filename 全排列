@@ -1,0 +1,12 @@
+每次固定第一个数字递归地排列数组剩余部分
+python 有内置函数可以直接实现
+
+
+class Solution(object):
+    def permute(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        from itertools import permutations
+	return list(permutations(nums))
