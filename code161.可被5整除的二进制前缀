@@ -1,0 +1,14 @@
+#实时转为十进制
+
+class Solution(object):
+    def prefixesDivBy5(self, A):
+        """
+        :type A: List[int]
+        :rtype: List[bool]
+        """
+        s = 0
+        res = []
+        for n in A:
+            s = s * 2 + n
+            res.append(s % 5 == 0)
+        return res
