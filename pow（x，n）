@@ -1,0 +1,19 @@
+x 的 n 次方，
+n是偶数-计算 y=x^(n/2)，然后计算y的平方
+n是奇数-y = y * y * x
+
+class Solution(object):
+    def myPow(self, x, n):
+        """
+        :type x: float
+        :type n: int
+        :rtype: float
+        """
+        if not n:
+            return 1
+        if n < 0: # n为负数，倒数
+            return 1 / self.myPow(x, -n)
+        if n % 2: # n为奇数，n-1
+            return x * self.myPow(x, n-1)
+        return self.myPow(x*x, n/2) # n为偶数，直接n/2
+
