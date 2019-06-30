@@ -1,0 +1,20 @@
+#辗转相除法的思想
+
+class Solution(object):
+    def gcdOfStrings(self, str1, str2):
+        """
+        :type str1: str
+        :type str2: str
+        :rtype: str
+        """
+        if(len(str2)>len(str1)):
+            temp = str2
+            str2 = str1
+            str1 = temp
+        while(len(str2)):
+            temp = str1
+            str1 = str2
+            str2 = temp.replace(str2,"")
+            if(str2 == temp):
+                return ""
+        return str1
