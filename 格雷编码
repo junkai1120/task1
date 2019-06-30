@@ -1,0 +1,33 @@
+以二进制为0值的格雷码为第零项，第一项改变最右边的位元，第二项改变右起第一个为1的位元的左边位元，
+第三、四项方法同第一、二项，如此反复，即可排列出n个位元的格雷码.
+
+class Solution(object):
+    def grayCode(self, n):
+        """
+        :type n: int
+        :rtype: List[int]
+        """
+        num = "0" * n
+        res = [0]
+        c = 2 ** n
+        while len(res) < c:
+            if num[-1] == "0":
+                num = num[:-1] + "1"
+                res.append(int(num, 2))
+            else:
+                num = num[:-1] + "0"
+                res.append(int(num, 2))
+            # print(num)
+
+            if len(res) == c:
+                break
+            idx = num.rfind("1")
+            if num[idx - 1] == "0":
+                num = num[:idx - 1] + "1" + num[idx:]
+            else:
+                num = num[:idx - 1] + "0" + num[idx:]
+            # print(num)
+            res.append(int(num, 2))
+
+        return res
+
