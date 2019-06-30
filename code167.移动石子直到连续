@@ -1,0 +1,32 @@
+先排序求得最大最小距离，若最大最小距离都是1时则无需移动；若最小距离为1时，将最远端的石头一步移到中间石头的旁边就连续了；
+最小距离为2时，将最远端石头移到两相邻石头中间则连续；
+最小距离大于2时，将最远端石头移到前面两个石头其中一个的旁边，再把另外一个移过来即可，最小步数为2.
+
+class Solution {
+public:
+    vector<int> numMovesStones(int a, int b, int c) {
+        vector<int> res;
+        res.push_back(a);
+        res.push_back(b);
+        res.push_back(c);
+        sort(res.begin(),res.end());
+        int min = res[1]-res[0] < res[2]-res[1] ? res[1]-res[0] : res[2]-res[1];
+        int max = res[1]-res[0] > res[2]-res[1] ? res[1]-res[0] : res[2]-res[1];
+        res.clear();
+        if(min + max ==2)
+        {
+            res.push_back(0);
+            res.push_back(0);
+            return res;
+        }else if(min <= 2)
+        {
+            res.push_back(1);
+            res.push_back(min-1 + max -1);
+            return res;
+        }else{
+            res.push_back(2);
+            res.push_back(min-1 + max -1);
+            return res;
+        }
+    }
+};
