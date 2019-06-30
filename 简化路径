@@ -1,0 +1,17 @@
+栈解决,把当前目录压入栈中,遇到..弹出栈顶,最后返回栈中元素
+
+class Solution(object):
+    def simplifyPath(self, path):
+        """
+        :type path: str
+        :rtype: str
+        """
+        stack = []
+        path = path.split("/")
+
+        for item in path:
+            if item == "..":
+                if stack : stack.pop()
+            elif item and item != ".":
+                stack.append(item)
+        return "/" + "/".join(stack)
