@@ -1,0 +1,20 @@
+#点斜式判断
+
+class Solution(object):
+    def isBoomerang(self, points):
+        """
+        :type points: List[List[int]]
+        :rtype: bool
+        """
+        if points[0]==points[1] or points[0]==points[2] or points[2]==points[1]:
+            return False
+        if points[1][0]!=points[0][0]:
+            k=(points[1][1]-points[0][1])/(points[1][0]-points[0][0])
+            if k*(points[2][0]-points[0][0])==(points[2][1]-points[0][1]):
+                return False
+            else:
+                return True
+        else:
+            if points[1][0]==points[2][0]:
+                return False
+            return True
