@@ -1,0 +1,14 @@
+内置函数
+
+class Solution(object):
+    def heightChecker(self, heights):
+        """
+        :type heights: List[int]
+        :rtype: int
+        """
+        sort_heights = sorted(heights)
+        num = 0
+        for i, height in enumerate(heights):
+            if height != sort_heights[i]:
+                num += 1
+        return num
