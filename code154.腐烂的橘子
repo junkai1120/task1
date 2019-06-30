@@ -1,0 +1,29 @@
+这个问题类似于岛屿问题，我们只需将所有的烂橘子的坐标存放到一个队列里面，然后通过BFS将附近的新鲜橘子腐蚀即可。
+
+class Solution(object):
+    def orangesRotting(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+ r, c = len(grid), len(grid[0])
+        rot = list()
+        for i in range(r):
+            for j in range(c):
+                if grid[i][j] == 2:
+                    rot.append((i, j, 0))
+        
+        d = [(0,1), (0,-1), (1,0), (-1,0)]
+        res = 0
+        while rot:
+            i, j, res = rot.pop(0)
+            for xd, yd in d:
+                x = i + xd
+                y = j + yd
+                if 0 <= x < r and 0 <= y < c and grid[x][y] == 1:
+                    grid[x][y] = 2
+                    rot.append((x, y, res+1))
+            
+        if any(1 in row for row in grid):
+            return -1
+        return res
