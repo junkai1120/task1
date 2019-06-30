@@ -1,0 +1,13 @@
+class Solution(object):
+    def allCellsDistOrder(self, R, C, r0, c0):
+        """
+        :type R: int
+        :type C: int
+        :type r0: int
+        :type c0: int
+        :rtype: List[List[int]]
+        """
+        dists = {(r, c): abs(r0-r)+abs(c0-c) for r in range(R) for c in range(C)}
+        return list(map(list, sorted(dists.keys(), key=dists.__getitem__)))
+
+第一，获得每个坐标与目标点之间的距离；第二步，将每个坐标根据距离进行排序。
