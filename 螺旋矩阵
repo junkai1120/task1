@@ -1,0 +1,74 @@
+我们可以将这个东西，看做是一个遍历。
+在一个矩阵上顺时针旋转的话，一共有四个方向，即 右(1,0)，下(0,1)，左(-1,0)，上(0,-1)。每当接触到一个边界之后，进行方向的改变。
+然后先确定四个边界点，左上，右上，右下，左下,在这个例子中，即为(0,0),(2,0),(2,2),(0,2)。
+当接触到一个边界，在改变方向的同时，也应该缩小边界点的位置。
+开始按照一个方向进行前进，每当越界的时候，进行方向的矫正。并检查是否遍历完成，这里遍历完成的检查比较简单。即，检查左上的 x y 是否比 右下的 x y 要大。如果同时满足这两点，那么遍历结束。
+
+class Solution:
+    class Point:
+        def __init__(self, x, y):
+            self.x = x
+            self.y = y
+
+        def __str__(self):
+            return "Point(x:%d,y:%d)" % (self.x, self.y)
+    def spiralOrder(self, matrix: [[int]]) -> [int]:
+        n = len(matrix)
+        if n == 0:
+            return []
+        m = len(matrix[0])
+        ret = []
+        
+
+
+        currentPoint = Point(0,0)
+        direction = Point(1,0)
+        lt = Point(0,0)
+        rt = Point(m-1,0)
+        lb = Point(0, n-1)
+        rb = Point(m-1,n-1)
+
+        # print(lt,rt)
+        # print(lb,rb)
+
+        # print(matrix[currentPoint.y][currentPoint.x])
+        ret.append(matrix[currentPoint.y][currentPoint.x])
+        # print("%d %d : %d" % (currentPoint.y, currentPoint.x,matrix[currentPoint.y][currentPoint.x]))
+        while True:
+            nextP = Point(currentPoint.x+direction.x,currentPoint.y+direction.y)
+            # print("%d %d %s" % (nextP.y, nextP.x, direction))
+            if lt.x <= nextP.x <= rb.x and lt.y <= nextP.y <= rb.y:
+                currentPoint = nextP
+
+                # print()
+                # print("%d %d : %d" % (currentPoint.y, currentPoint.x,matrix[currentPoint.y][currentPoint.x]))
+                ret.append(matrix[currentPoint.y][currentPoint.x])
+            else:
+                if direction.x == 1 and direction.y == 0:
+                    # direction = Point(0,1)
+                    direction.x = 0
+                    direction.y = 1
+                    lt.y += 1
+                    rt.y = lt.y
+                elif direction.x == 0 and direction.y == 1:
+                    # direction = Point(-1,0)
+                    direction.x = -1
+                    direction.y = 0
+                    rt.x -= 1
+                    rb.x = rt.x
+                elif direction.x == -1 and direction.y == 0:
+                    # direction = Point(0,-1)
+                    direction.x = 0
+                    direction.y = -1
+                    lb.y -= 1
+                    rb.y = lb.y
+                else:
+                    # direction = Point(1, 0)
+                    direction.x = 1
+                    direction.y = 0
+                    lt.x += 1
+                    lb.x = lt.x
+                if lt.x > rt.x and lt.y > rb.y:
+                    break
+        return ret
+
