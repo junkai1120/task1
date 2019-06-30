@@ -1,0 +1,8 @@
+当且仅当它们的排序字符串相等时，两个字符串是字母异位词
+
+class Solution(object):
+    def groupAnagrams(self, strs):
+        ans = collections.defaultdict(list)
+        for s in strs:
+            ans[tuple(sorted(s))].append(s)
+        return ans.values()
