@@ -1,0 +1,22 @@
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        if not s:return 0        #s若为false就返回0
+        left = 0                 #窗口左边界
+        lookup = set()           #创建一个无序不重复元素集
+        n = len(s)
+        max_len = 0
+        cur_len = 0
+        for i in range(n):
+            cur_len += 1
+            while s[i] in lookup:
+                lookup.remove(s[left])     #如果s中字符已存在lookup中，删除最左侧元素，接着移动窗口
+                left += 1
+                cur_len -= 1
+            if cur_len > max_len:max_len = cur_len
+            lookup.add(s[i])              #如果s中字符不在lookup窗口中，增长窗口长度，添加窗口元素
+        return max_len
+
