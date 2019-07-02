@@ -1,0 +1,29 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def addTwoNumbers(self, l1, l2):
+        """
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        """
+        x1 = ''           #定义空字符串
+        while l1:
+            x1 += str(l1.val)
+            l1 = l1.next          #将l1链表的节点数值依次传给x1
+        x2 = ''
+        while l2:
+            x2 += str(l2.val)
+            l2 = l2.next         #将l2链表的节点数值依次传给x2
+        res = int(x1[::-1]) + int(x2[::-1])      #x1和x2中的三位数倒序相加生成新的三位数res
+        res = str(res)[::-1]                     #再次将res反转并转换为字符串类型
+        ans = ListNode(int(res[0]))              #res[0]作为链表首节点
+        ans1 = ans
+        for i in res[1:]:
+            ans.next = ListNode(int(i))
+            ans = ans.next                       #依次把res剩余位数字传给其他节点
+        return ans1
